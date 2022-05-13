@@ -7,6 +7,8 @@ const ApiFeatures = require("../utils/apifeatures");
 
 //creating product based on the model imported from productModel.js ---only for admin
 exports.createProduct = catchAsyncErrors(async (req,res,next) =>{
+
+  req.body.user = req.user.id;
   const product = await Product.create(req.body);
 
   res.status(201).json({
